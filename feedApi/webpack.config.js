@@ -1,8 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const env = require('yargs').argv.env;
-
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 
 let libName = 'feed-api';
@@ -10,7 +9,7 @@ let output;
 let plugins = [];
 
 if (env === 'production') {
-    plugins.push(new UglifyJsPlugin({ minimize: true }));
+    plugins.push(new UglifyJsPlugin());
     output = libName + '.min.js';
 } 
 else {
